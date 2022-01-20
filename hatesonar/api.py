@@ -8,26 +8,22 @@ from __future__ import print_function
 
 import os
 
-import joblib
 import numpy as np
+import onnxruntime as rt
 
 
 class Sonar(object):
     _map = {0: 'hate_speech', 1: 'offensive_language', 2: 'neither'}
 
     def __init__(self):
-        BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
-        model_file = os.path.join(BASE_DIR, 'model.joblib')
-        preprocessor_file = os.path.join(BASE_DIR, 'preprocess.joblib')
-        self.estimator = joblib.load(model_file)
-        self.preprocessor = joblib.load(preprocessor_file)
+        base_dir = os.path.join(os.path.dirname(__file__), './data')
+        pipeline_file = os.path.join(base_dir, 'pipeline.onnx')
+        self.pipeline = rt.InferenceSession(pipeline_file)
 
-    def ping(self, text):
+    def ping(self, text: str) -> dict:
         assert isinstance(text, str)
 
-        vector = self.preprocessor.transform([text])
-        proba = self.estimator.predict_proba(vector)[0]
-        mapping = {0: 'hate_speech', 1: 'offensive_language', 2: 'neither'}
+        proba = self.pipeline.run(None, {'input': [text]})[1][0]
 
         res = {
             'text': text,
