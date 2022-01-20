@@ -13,6 +13,7 @@ import numpy as np
 
 
 class Sonar(object):
+    _map = {0: 'hate_speech', 1: 'offensive_language', 2: 'neither'}
 
     def __init__(self):
         BASE_DIR = os.path.join(os.path.dirname(__file__), './data')
@@ -30,11 +31,11 @@ class Sonar(object):
 
         res = {
             'text': text,
-            'top_class': mapping[np.argmax(proba)],
+            'top_class': Sonar._map[np.argmax(proba)],
             'classes': [
-                {'class_name': mapping[k],
+                {'class_name': Sonar._map[k],
                  'confidence': proba[k]}
-                for k in sorted(mapping)
+                for k in sorted(Sonar._map)
             ]
         }
 
