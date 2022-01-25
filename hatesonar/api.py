@@ -17,6 +17,8 @@ class Sonar(object):
 
     def __init__(self):
         base_dir = os.path.join(os.path.dirname(__file__), "data")
+        print(base_dir)
+        print(os.listdir(base_dir))
         pipeline_file = os.path.join(base_dir, "pipeline.onnx")
         self.pipeline = rt.InferenceSession(pipeline_file)
 
