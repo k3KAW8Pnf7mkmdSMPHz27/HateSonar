@@ -2,23 +2,18 @@
 Model API.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
-import os
+import importlib.resources
 
 import numpy as np
 import onnxruntime as rt
 
 
-class Sonar(object):
+class Sonar:
     _map = {0: "hate_speech", 1: "offensive_language", 2: "neither"}
 
     def __init__(self):
-        base_dir = os.path.join(os.path.dirname(__file__), "data")
-        pipeline_file = os.path.join(base_dir, "pipeline.onnx")
-        self.pipeline = rt.InferenceSession(pipeline_file)
+        with importlib.resources.path("hatesonar.data", "pipeline.onnx") as pipeline_file:
+            self.pipeline = rt.InferenceSession(str(pipeline_file.absolute()))
 
     def ping(self, text: str) -> dict:
         assert isinstance(text, str)

@@ -1,1 +1,1 @@
-recursive-include hatesonar/data *.joblib
+recursive-include hatesonar/data *.onnx
