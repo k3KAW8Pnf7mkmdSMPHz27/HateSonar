@@ -16,7 +16,7 @@ class Sonar(object):
     _map = {0: "hate_speech", 1: "offensive_language", 2: "neither"}
 
     def __init__(self):
-        base_dir = os.path.join(os.path.dirname(__file__), "./data")
+        base_dir = os.path.join(os.path.dirname(__file__), "data")
         pipeline_file = os.path.join(base_dir, "pipeline.onnx")
         self.pipeline = rt.InferenceSession(pipeline_file)
 
