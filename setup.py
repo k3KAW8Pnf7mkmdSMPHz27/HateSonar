@@ -7,8 +7,10 @@ import sys
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = "hatesonar-onnx"
-DESCRIPTION = "Fork of Hironsan's Hate Speech Detection Library, HateSonar, using onnx."
+NAME = "hatesonar-onnxruntime"
+DESCRIPTION = (
+    "Fork of Hironsan's Hate Speech Detection Library, HateSonar, using onnxruntime."
+)
 URL = "https://github.com/k3KAW8Pnf7mkmdSMPHz27/HateSonar"
 EMAIL = "jonatan.asketorp@gmail.com"
 AUTHOR = "Jonatan Asketorp"
@@ -40,11 +42,10 @@ setup(
     license=LICENSE,
     classifiers=[
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: Implementation :: CPython",
-        "Programming Language :: Python :: Implementation :: PyPy",
     ],
 )
