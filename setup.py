@@ -25,7 +25,7 @@ if sys.argv[-1] == "publish":
     os.system("twine upload dist/*")
     sys.exit()
 
-required = ["numpy~=1.24.3", "onnxruntime~=1.19.2"]
+required = ["numpy>=1.24.3", "onnxruntime~=1.19.2"]
 
 setup(
     name=NAME,
